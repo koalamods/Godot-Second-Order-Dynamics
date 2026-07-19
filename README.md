@@ -24,15 +24,10 @@ Useful for:
 
 ## Installation
 
-Copy the files into your Godot project:
+Copy the addon folder into your Godot project:
 
 ```text
-res://
-  addons/
-    second_order_dynamics/
-      plugin.cfg
-      plugin.gd
-      second_order_inspector_plugin.gd
-      second_order_preview_control.gd
-      SecondOrderDynamics3D.gd
-      SecondOrderController3D.gd
+res://addons/second_order_dynamics/
+
+Then enable the plugin:
+Project > Project Settings > Plugins > Second Order Dynamics
