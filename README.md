@@ -28,12 +28,11 @@ Copy the files into your Godot project:
 
 ```text
 res://
-  SecondOrderDynamics3D.gd
-  SecondOrderController3D.gd
-
   addons/
-    second_order_preview/
+    second_order_dynamics/
       plugin.cfg
       plugin.gd
       second_order_inspector_plugin.gd
       second_order_preview_control.gd
+      SecondOrderDynamics3D.gd
+      SecondOrderController3D.gd
