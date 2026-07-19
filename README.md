@@ -1,6 +1,6 @@
 # Godot Second Order Dynamics 3D
 
-A small Godot 4 addon for adding smooth, spring-like second order motion to `Node3D` objects.
+A small Godot 4 addon for adding smooth, spring-like second order motion to `Node3D` objects. Ported from the (video)[https://www.youtube.com/watch?v=KPoeNZZ6H4s] by t3ssel8r.
 
 Useful for:
 
