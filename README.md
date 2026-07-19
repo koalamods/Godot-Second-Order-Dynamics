@@ -22,6 +22,8 @@ res://addons/second_order_dynamics/
 
 Then enable the plugin:
 Project > Project Settings > Plugins > Second Order Dynamics
+```
+
 ---
 
 ## Quick Setup
