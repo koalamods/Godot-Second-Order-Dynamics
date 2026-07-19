@@ -13,9 +13,9 @@ Useful for:
 
 The system is controlled by three main parameters:
 
-- `f` — frequency / response speed
-- `z` — damping
-- `r` — initial response / anticipation
+- `f`: frequency / response speed
+- `z`: damping
+- `r`: initial response / anticipation
 
 It also includes an optional Inspector preview graph to make tuning easier.
 
