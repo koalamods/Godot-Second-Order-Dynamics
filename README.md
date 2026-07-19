@@ -16,14 +16,10 @@ Useful for:
 ## Features
 
 - Smooth 3D position following
-- Resource-based settings
-- Reusable parameter presets
+- Resource-based settings for reusable parameters
 - Supports `_process()` and `_physics_process()`
-- Optional editor updates with `@tool`
 - Inspector preview graph
 - Reset button for invalid or infinite transforms
-- Inspector tooltips for easier setup
-
 ---
 
 ## Installation
