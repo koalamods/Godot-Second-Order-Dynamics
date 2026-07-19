@@ -19,10 +19,11 @@ Copy the addon folder into your Godot project:
 
 ```text
 res://addons/second_order_dynamics/
+```
 
 Then enable the plugin:
 Project > Project Settings > Plugins > Second Order Dynamics
-```
+
 
 ---
 
