@@ -103,6 +103,7 @@ This makes it possible to tune position, rotation, and scale independently.
 ## Update Modes
 
 The `SecondOrderController3D` supports both `_process()` and `physics_process()`.
+
 While the `_process()` mode is more generally used for general animation and visual smoothing, the `physics_process()` mode comes in handy for handling physics-related objects and provides support for collision-aware movement (see next chapter).
 
 ---
@@ -111,6 +112,7 @@ While the `_process()` mode is more generally used for general animation and vis
 If the target should collide with `StaticBody3D` objects or other physics bodies, use:
 - Position Apply Mode: `CHARACTER_BODY_MOVE_AND_SLIDE`
 - Update Mode: `PHYSICS_PROCESS`
+
 The target node must be a `CharacterBody3D` with a valid `CollisionShape3D`.
 
 **Important**: 
