@@ -34,11 +34,6 @@ var r: float = 0.0:
 		_recalculate_constants()
 		emit_changed()
 
-## NodePath to the Node3D that should receive the smoothed output.
-## The controller resolves this path relative to itself.
-## Usually this is the object whose global_position should be driven by the second order system.
-@export var target_node_path: NodePath
-
 var xp: Vector3
 var y: Vector3
 var yd: Vector3
@@ -58,7 +53,6 @@ func _init() -> void:
 	_recalculate_constants()
 
 
-
 func initialize(initial_position: Vector3) -> void:
 	_recalculate_constants()
 
@@ -66,6 +60,10 @@ func initialize(initial_position: Vector3) -> void:
 	y = initial_position
 	yd = Vector3.ZERO
 	_initialized = true
+
+
+func reset(position: Vector3) -> void:
+	initialize(position)
 
 
 func update(delta: float, x: Vector3, xd: Variant = null) -> Vector3:
@@ -129,41 +127,6 @@ func update(delta: float, x: Vector3, xd: Variant = null) -> Vector3:
 	return y
 
 
-func apply_to_target(
-	owner: Node,
-	delta: float,
-	input_position: Vector3,
-	input_velocity: Variant = null
-) -> void:
-	if owner == null:
-		return
-
-	if not _is_finite_vector3(input_position):
-		return
-
-	var target := owner.get_node_or_null(target_node_path) as Node3D
-
-	if target == null:
-		return
-
-	var new_position := update(delta, input_position, input_velocity)
-
-	if not _is_finite_vector3(new_position):
-		return
-
-	target.global_position = new_position
-
-func _is_finite_vector3(value: Vector3) -> bool:
-	return (
-		is_finite(value.x)
-		and is_finite(value.y)
-		and is_finite(value.z)
-	)
-
-func reset(position: Vector3) -> void:
-	initialize(position)
-
-
 func get_preview_points(
 	duration: float = 2.0,
 	steps: int = 120
@@ -174,19 +137,15 @@ func get_preview_points(
 	var preview_y := 0.0
 	var preview_yd := 0.0
 
-	var safe_steps: float = max(steps, 2)
+	var safe_steps: int = max(steps, 2)
 	var delta := duration / float(safe_steps - 1)
 
-	# Add initial state before the step has been integrated.
 	points.append(Vector2(0.0, preview_y))
 
 	for i in range(1, safe_steps):
 		var time := float(i) * delta
 
-		# Step input: target jumps from 0.0 to 1.0.
 		var x := 1.0
-
-		# Estimate input velocity, just like the real update method does.
 		var xd := (x - preview_xp) / delta
 		preview_xp = x
 
@@ -217,10 +176,18 @@ func get_preview_points(
 			k1_stable = (1.0 - beta) * t2
 			k2_stable = delta * t2
 
+		if abs(k2_stable) < 0.000001:
+			points.append(Vector2(time, preview_y))
+			continue
+
 		preview_y = preview_y + delta * preview_yd
 		preview_yd = preview_yd + delta * (
 			x + k3 * xd - preview_y - k1_stable * preview_yd
 		) / k2_stable
+
+		if not is_finite(preview_y) or not is_finite(preview_yd):
+			preview_y = x
+			preview_yd = 0.0
 
 		points.append(Vector2(time, preview_y))
 
@@ -241,3 +208,11 @@ func _recalculate_constants() -> void:
 
 func _cosh(value: float) -> float:
 	return (exp(value) + exp(-value)) * 0.5
+
+
+func _is_finite_vector3(value: Vector3) -> bool:
+	return (
+		is_finite(value.x)
+		and is_finite(value.y)
+		and is_finite(value.z)
+	)
