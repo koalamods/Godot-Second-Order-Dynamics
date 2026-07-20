@@ -3,7 +3,7 @@
 A small Godot 4 addon for adding smooth, spring-like second order motion to `Node3D` objects.
 
 This addon is based on the second order dynamics system shown in  
-https://www.youtube.com/watch?v=KPoeNZZ6H4s.
+![Giving Personality to Procedural Animations using Math](https://www.youtube.com/watch?v=KPoeNZZ6H4s) by ![@t3ssel8r](https://www.youtube.com/@t3ssel8r).
 
 ![Dynamics Showcase](showcase.gif)
 
