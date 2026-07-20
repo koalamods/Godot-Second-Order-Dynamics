@@ -95,6 +95,7 @@ Each transform channel uses its own optional dynamics resource:
   - Position Dynamics
   - Rotation Dynamics
   - Scale Dynamics
+
 This makes it possible to tune position, rotation, and scale independently.
 
 ---
