@@ -13,12 +13,10 @@ This addon is based on the second order dynamics system shown in
 
 - Smooth second order motion for `Node3D` objects
 - Supports position, rotation, and scale smoothing
-- Separate reusable `Resource` settings for position, rotation, and scale
 - Supports `_process()` and `_physics_process()`
 - Optional collision-aware movement with `CharacterBody3D`
-- In-editor preview graph for tuning `f`, `z`, and `r`
-- Reset button for invalid, infinite, or NaN transforms
-- Inspector tooltips for easier setup
+- In-editor preview graph
+- Reset button for invalid transforms
 
 ---
 
@@ -104,7 +102,7 @@ This makes it possible to tune position, rotation, and scale independently.
 
 The `SecondOrderController3D` supports both `_process()` and `physics_process()`.
 
-While the `_process()` mode is more generally used for general animation and visual smoothing, the `physics_process()` mode comes in handy for handling physics-related objects and provides support for collision-aware movement (see next chapter).
+While the `_process()` mode is more generally used for general animation and visual smoothing, the `physics_process()` mode comes in handy for handling physics-related objects and provides support for collision-aware movement.
 
 ---
 
